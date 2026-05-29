@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flip Cards</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: transparent; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 1.5rem;
+  margin: 0 auto;
+}
+.scene {
+  perspective: 1000px;
+  cursor: pointer;
+  aspect-ratio: 1 / 1;
+}
+.card {
+  width: 100%; height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4,0.2,0.2,1);
+}
+.card.flipped { transform: rotateY(180deg); }
+.face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+}
+.front { border-bottom: 4px solid #3b7de8; }
+.flip-icon {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 18px;
+  color: #3b7de8;
+  opacity: 0.7;
+}
+.word {
+  font-size: 26px;
+  font-weight: 500;
+  color: #1a1a2e;
+  line-height: 1.3;
+}
+.back {
+  transform: rotateY(180deg);
+  background: #f7f9ff;
+  border-bottom: 4px solid #3b7de8;
+}
+.back .desc {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.65;
+}
+.scene:hover .card:not(.flipped) { transform: translateY(-3px); }
+.scene:hover .card.flipped { transform: rotateY(180deg) translateY(-3px); }
+</style>
+</head>
+<body>
+<div class="grid">
+
+  <div class="scene" tabindex="0" role="button" aria-label="Apple card" onclick="this.querySelector('.card').classList.toggle('flipped')" onkeydown="if(event.key==='Enter'||event.key===' ')this.querySelector('.card').classList.toggle('flipped')">
+    <div class="card">
+      <div class="face front">
+        <i class="ti ti-refresh flip-icon" aria-hidden="true"></i>
+        <div class="word">Apple</div>
+      </div>
+      <div class="face back">
+        <i class="ti ti-refresh flip-icon" aria-hidden="true"></i>
+        <div class="desc">A sweet, crunchy fruit that grows on trees in many colours and varieties.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" tabindex="0" role="button" aria-label="Ball card" onclick="this.querySelector('.card').classList.toggle('flipped')" onkeydown="if(event.key==='Enter'||event.key===' ')this.querySelector('.card').classList.toggle('flipped')">
+    <div class="card">
+      <div class="face front">
+        <i class="ti ti-refresh flip-icon" aria-hidden="true"></i>
+        <div class="word">Ball</div>
+      </div>
+      <div class="face back">
+        <i class="ti ti-refresh flip-icon" aria-hidden="true"></i>
+        <div class="desc">A round object used in many sports and games, made in all sizes and materials.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene" tabindex="0" role="button" aria-label="Cat card" onclick="this.querySelector('.card').classList.toggle('flipped')" onkeydown="if(event.key==='Enter'||event.key===' ')this.querySelector('.card').classList.toggle('flipped')">
+    <div class="card">
+      <div class="face front">
+        <i class="ti ti-refresh flip-icon" aria-hidden="true"></i>
+        <div class="word">Cat</div>
+      </div>
+      <div class="face back">
+        <i class="ti ti-refresh flip-icon" aria-hidden="true"></i>
+        <div class="desc">A small, furry domestic animal known for its independence, agility, and quiet nature.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
